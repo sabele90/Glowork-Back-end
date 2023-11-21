@@ -1,6 +1,6 @@
 const Offer = require("../models/offer.model");
 const Company = require("../models/company.model");
-const Continent = require("../models/continent.model");
+
 
 async function getAllOffer(req, res) {
   try {

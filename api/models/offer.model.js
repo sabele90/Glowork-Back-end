@@ -8,7 +8,7 @@ const Offer = sequelize.define(
             allowNull:false
           },
           description:{
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull:false
           },
           location:{
@@ -24,17 +24,38 @@ const Offer = sequelize.define(
             allowNull:false
           },
           requirements:{
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull:false
           },
           benefits:{
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT,
             allowNull:false
           },
           max_volunteers:{
             type: DataTypes.INTEGER,
             allowNull:false
           },
+          photo_1: {
+            type: DataTypes.STRING,
+            allowNull: false,
+          },
+          photo_2: {
+            type: DataTypes.STRING,
+            allowNull: false,
+          },
+          photo_3: {
+            type: DataTypes.STRING,
+            allowNull: false,
+          },
+          photo_4: {
+            type: DataTypes.STRING,
+            allowNull: false,
+          },
+          photo_5: {
+            type: DataTypes.STRING,
+            allowNull: false,
+          },
+          
           company_id:{
             type: DataTypes.INTEGER,
           },

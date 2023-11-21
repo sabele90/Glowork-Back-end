@@ -32,10 +32,7 @@ const Company = sequelize.define("company", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  photo_gallery: {
-    type: DataTypes.STRING,
-    allowNull: false,
-  },
+
   role: {
     type: DataTypes.ENUM("user", "company", "admin"), // Enumera los roles disponibles
     allowNull: false,
