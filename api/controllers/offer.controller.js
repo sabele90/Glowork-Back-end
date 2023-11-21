@@ -8,11 +8,7 @@ async function getAllOffer(req, res) {
       include: [
         {
           model: Company,
-          include: [
-            {
-              model: Continent,
-            },
-          ],
+          
         },
       ],
     });
