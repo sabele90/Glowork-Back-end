@@ -8,8 +8,11 @@ async function getAllOffer(req, res) {
       include: [
         {
           model: Company,
+          where: {
+            country_id: countryId
           
         },
+      }
       ],
     });
 
@@ -18,6 +21,8 @@ async function getAllOffer(req, res) {
     res.status(500).send(error.message);
   }
 }
+
+
 
 async function getOneOffer(req, res) {
   try {
