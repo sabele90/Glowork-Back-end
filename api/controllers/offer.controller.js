@@ -8,10 +8,7 @@ async function getAllOffer(req, res) {
       include: [
         {
           model: Company,
-          where: {
-            country_id: countryId
-          
-        },
+      
       }
       ],
     });
