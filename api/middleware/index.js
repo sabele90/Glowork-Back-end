@@ -59,7 +59,7 @@ function checkAuthUser(req, res, next) {
 
       if (!user) return res.status(401).send("User not found");
 
-      res.locals.user = user;
+      res.locals.user = user; 
       next();
     }
   );

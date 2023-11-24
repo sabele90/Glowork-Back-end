@@ -5,10 +5,12 @@ const {
   updateFavorites,
   createFavorites,
   deleteFavorites,
+  getMyFavorites
 } = require("../controllers/favorites.controller");
 const { checkAuthUser, checkAdminCompanyOrUser } = require("../middleware");
 
 router.get("/", checkAuthUser, checkAdminCompanyOrUser, getAllFavorites);
+router.get("/favorites", checkAuthUser, getMyFavorites)
 router.get(
   "/:favorites_id",
   checkAuthUser,
@@ -22,8 +24,7 @@ router.put(
   updateFavorites
 );
 router.post("/", checkAuthUser, checkAdminCompanyOrUser, createFavorites);
-router.delete(
-  "/:favorites_id",
+router.delete("/",
   checkAuthUser,
   checkAdminCompanyOrUser,
   deleteFavorites

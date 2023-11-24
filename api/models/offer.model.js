@@ -51,10 +51,7 @@ const Offer = sequelize.define(
             type: DataTypes.STRING,
             allowNull: false,
           },
-          photo_5: {
-            type: DataTypes.STRING,
-            allowNull: false,
-          },
+       
           
           company_id:{
             type: DataTypes.INTEGER,

@@ -28,11 +28,11 @@ const User = sequelize.define("user", {
     allowNull: false,
   },
   about: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: false,
   },
   interests: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: false,
   },
   contact_info_id: {

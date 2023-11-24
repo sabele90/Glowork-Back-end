@@ -19,12 +19,17 @@ function addRelationsToModels() {
     });
     ContactInfo.belongsTo(User, { foreignKey: "user_id" });
 
-    ContactInfo.hasOne(Nationality, {
-      foreignKey: "user_id",
+/*     ContactInfo.hasOne(Nationality, {
+      foreignKey: "contact_info_id", //antes user_id
       onDelete: "CASCADE",
       onUpdate: "CASCADE",
     });
-    Nationality.belongsTo(ContactInfo, { foreignKey: "user_id" });
+    Nationality.belongsTo(ContactInfo, { foreignKey: "user_id" }); */
+
+    Nationality.hasMany(ContactInfo);
+    ContactInfo.belongsTo(Nationality);
+
+
 
     //COMPANY
     Company.hasOne(Country, {
@@ -42,6 +47,13 @@ function addRelationsToModels() {
       onUpdate: "CASCADE",
     });
     Favorites.belongsTo(User, { foreignKey: "user_id" });
+
+    Offer.hasMany(Favorites, {
+      foreignKey: "offer_id",
+      onDelete: "CASCADE",
+      onUpdate: "CASCADE"
+    })
+    Favorites.belongsTo(Offer, {foreignKey: "offer_id"})
 
     User.hasMany(Review, {
       foreignKey: "user_id",

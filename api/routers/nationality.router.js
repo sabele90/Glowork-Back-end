@@ -13,7 +13,7 @@ router.get("/:nationality_id", getOneNationality);
 router.put(
   "/:nationality_id",
   checkAuthUser,
-  checkAdminCompanyOrUser,
+
   updateNationality
 );
 router.post("/", checkAuthUser, checkAdminCompanyOrUser, createNationality);

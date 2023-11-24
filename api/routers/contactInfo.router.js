@@ -13,10 +13,9 @@ router.get("/:contactInfo_id", getOneContactInfo);
 router.put(
   "/:contactInfo_id",
   checkAuthUser,
-  checkAdminCompanyOrUser,
   updateContactInfo
 );
-router.post("/", checkAuthUser, checkAdminCompanyOrUser, createContactInfo);
+router.post("/",checkAuthUser,  createContactInfo);
 //checkadmuserorcompany, me da error, solo con el checkauth puedo entrar como admin, sin embargo el middelware que me comprueba que es admin me da error
 router.delete(
   "/:contactInfo_id",

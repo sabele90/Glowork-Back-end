@@ -23,7 +23,6 @@ router.get("/:user_id", getOneUser);
 router.put(
   "/:user_id",
   checkAuthUser,
-  checkAdminCompanyOrUser,
   checkEmail,
   checkPassword,
   updateUser

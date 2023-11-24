@@ -24,15 +24,16 @@ async function login(req, res) {
       const payload = {
         email: model.email,
         role: model.role,
+        userId: model.id
       };
 
       const token = jwt.sign(payload, process.env.SECRET, {
         expiresIn: "1h",
       });
-
       return res.status(200).json({
         token,
         role: model.role,
+        userId: model.id
       });
     } else {
       return res.status(404).json("Error: Email or Password incorrect");

@@ -1,5 +1,6 @@
 const ContactInfo = require("../models/contactInfo.model");
 const User = require("../models/user.model");
+const Nationality = require("../models/nationality.model")
 
 async function getUserContactInfo(req, res) {
   try {
@@ -7,12 +8,22 @@ async function getUserContactInfo(req, res) {
       where: {
         id: req.params.user_id,
       },
-      include: ContactInfo,
+      include: [
+        {
+          model: ContactInfo,
+          attributes: ["date_of_birth"],
+          include: [
+                    {
+                      model:Nationality,
+                      attributes: ["nationality"]
+                    }
+                    ]
+        }
+    ] 
     });
 
-    const contactInfo = await user.getContact_info();
 
-    return res.status(200).json({ user, contactInfo });
+    return res.status(200).json({ user });
   } catch (error) {
     console.error(error);
     res.status(500).json({
