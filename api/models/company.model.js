@@ -35,7 +35,7 @@ const Company = sequelize.define("company", {
 
   role: {
     type: DataTypes.ENUM("user", "company", "admin"), // Enumera los roles disponibles
-    allowNull: false,
+    defaultValue: "company",
   },
   continent_id: {
     type: DataTypes.INTEGER,

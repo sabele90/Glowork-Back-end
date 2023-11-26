@@ -41,7 +41,7 @@ const User = sequelize.define("user", {
 
   role: {
     type: DataTypes.ENUM("user", "company", "admin"), // Enumera los roles disponibles
-    allowNull: false,
+    defaultValue: "user",
   },
   createdAt: {
     field: "created_at", // Cambia el nombre de la columna createdAt
