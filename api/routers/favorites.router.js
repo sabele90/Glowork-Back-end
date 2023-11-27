@@ -27,7 +27,6 @@ router.post("/", checkAuthUser, checkAdminCompanyOrUser, createFavorites);
 router.delete(
   "/:offerId",
   checkAuthUser,
-  checkAdminCompanyOrUser,
   deleteFavorites
 );
 

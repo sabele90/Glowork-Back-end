@@ -1,6 +1,19 @@
 const Offer = require("../models/offer.model");
 const Company = require("../models/company.model");
+const User = require("../models/user.model");
 
+async function getUserFavoriteOffers(req,res) {
+  try{
+    const userId = req.params.userId
+    const favorites = await Favorites.findAll({
+      where :{
+        user_id :userId
+      }
+    })
+  const favoiritesOffersId = favorites.map((favorite) => favorite.id)
+  
+}
+}
 
 async function getAllOffer(req, res) {
   try {
@@ -84,10 +97,26 @@ async function deleteOffer(req, res) {
   }
 }
 
+async function offerSetUser(req, res) {
+  try {
+    const offer = await Offer.findByPk(req.params.offer_id);
+    const user = await User.findByPk(res.locals.user.id);
+    const result = await offer.addUser(user)
+    return res.status(200).json({
+      message: "Offer assigned",
+      offer: offer,
+    });
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+}
+
+
 module.exports = {
   getAllOffer,
   getOneOffer,
   createOffer,
   updateOffer,
   deleteOffer,
+  offerSetUser
 };

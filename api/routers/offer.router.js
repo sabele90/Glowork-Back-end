@@ -5,6 +5,7 @@ const {
   updateOffer,
   createOffer,
   deleteOffer,
+  offerSetUser
 } = require("../controllers/offer.controller");
 const {
   checkAuthCompany,
@@ -14,6 +15,7 @@ const {
 
 router.get("/", getAllOffer);
 router.get("/:offer_id", getOneOffer);
+router.get("/offerSetUser/:offer_id", checkAuthUser, offerSetUser)
 router.put(
   "/:offer_id",
   checkAuthCompany,
