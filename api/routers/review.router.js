@@ -9,7 +9,7 @@ const {
 
 const { checkAuthUser, checkAdminCompanyOrUser } = require("../middleware");
 
-router.get("/", checkAuthUser, checkAdminCompanyOrUser, getAllReview);
+router.get("/",  getAllReview);
 
 router.get("/:review_id", checkAuthUser, checkAdminCompanyOrUser, getOneReview);
 

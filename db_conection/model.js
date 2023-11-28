@@ -19,12 +19,6 @@ function addRelationsToModels() {
     });
     ContactInfo.belongsTo(User, { foreignKey: "user_id" });
 
-/*     ContactInfo.hasOne(Nationality, {
-      foreignKey: "contact_info_id", //antes user_id
-      onDelete: "CASCADE",
-      onUpdate: "CASCADE",
-    });
-    Nationality.belongsTo(ContactInfo, { foreignKey: "user_id" }); */
 
     Nationality.hasMany(ContactInfo);
     ContactInfo.belongsTo(Nationality);
@@ -70,7 +64,7 @@ function addRelationsToModels() {
       onUpdate: "CASCADE",
     });
     Offer.belongsTo(Company, { foreignKey: "company_id" });
-    //company  o contient ??? join company with continent[]
+
     Company.hasMany(Continent, {
       foreignKey: "company_id",
       onDelete: "CASCADE",

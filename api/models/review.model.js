@@ -2,8 +2,11 @@ const { DataTypes } = require("sequelize");
 const { sequelize } = require("../../db_conection/index");
 
 const Review = sequelize.define("review", {
-  comment: {
+  profile_photo: {
     type: DataTypes.STRING,
+  },
+  comment: {
+    type: DataTypes.TEXT,
     allowNull: false,
   },
   rating: {

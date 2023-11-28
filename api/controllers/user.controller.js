@@ -1,6 +1,8 @@
 const ContactInfo = require("../models/contactInfo.model");
 const User = require("../models/user.model");
-const Nationality = require("../models/nationality.model")
+const Nationality = require("../models/nationality.model");
+const Offer = require("../models/offer.model");
+const Company = require("../models/company.model");
 
 async function getUserContactInfo(req, res) {
   try {
@@ -18,6 +20,10 @@ async function getUserContactInfo(req, res) {
                       attributes: ["nationality"]
                     }
                     ]
+        },
+        {
+          model: Offer,
+          include: [Company]
         }
     ] 
     });
