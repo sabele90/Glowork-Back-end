@@ -95,7 +95,6 @@ async function offerSetUser(req, res) {
 }
 
 module.exports = {
-  getUserFavoriteOffers,
   getAllOffer,
   getOneOffer,
   createOffer,
