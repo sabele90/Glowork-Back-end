@@ -5,17 +5,19 @@ const {
   updateOffer,
   createOffer,
   deleteOffer,
-  offerSetUser
+  getUserFavoriteOffers,
 } = require("../controllers/offer.controller");
 const {
   checkAuthCompany,
   checkAdminCompanyOrUser,
   checkAuthUser,
 } = require("../middleware");
-
 router.get("/", getAllOffer);
+
+router.get("/user/user_id/favorites", getUserFavoriteOffers);
+
 router.get("/:offer_id", getOneOffer);
-router.get("/offerSetUser/:offer_id", checkAuthUser, offerSetUser)
+router.get("/offerSetUser/:offer_id", checkAuthUser, offerSetUser);
 router.put(
   "/:offer_id",
   checkAuthCompany,

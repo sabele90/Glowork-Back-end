@@ -10,7 +10,12 @@ const {
 const { checkAuthUser, checkAdminCompanyOrUser } = require("../middleware");
 
 router.get("/", checkAuthUser, checkAdminCompanyOrUser, getAllFavorites);
-router.get("/favorites", checkAuthUser, getMyFavorites);
+router.get(
+  "/favorites",
+  checkAuthUser,
+  checkAdminCompanyOrUser,
+  getMyFavorites
+);
 router.get(
   "/:favorites_id",
   checkAuthUser,
@@ -24,10 +29,6 @@ router.put(
   updateFavorites
 );
 router.post("/", checkAuthUser, checkAdminCompanyOrUser, createFavorites);
-router.delete(
-  "/:offerId",
-  checkAuthUser,
-  deleteFavorites
-);
+router.delete("/:offerId", checkAuthUser, deleteFavorites);
 
 module.exports = router;
