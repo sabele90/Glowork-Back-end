@@ -21,7 +21,14 @@ async function getAllOffer(req, res) {
 
 async function getOneOffer(req, res) {
   try {
-    const offer = await Offer.findByPk(req.params.offer_id);
+    const offer = await Offer.findByPk(req.params.offer_id, {
+    include: [
+      {
+        model: Company,
+      },
+    ],
+  });
+
     if (offer) {
       return res.status(200).json(offer);
     } else {
