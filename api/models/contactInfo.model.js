@@ -1,28 +1,21 @@
 const { DataTypes } = require("sequelize");
 const { sequelize } = require("../../db_conection/index");
 
-const ContactInfo = sequelize.define("contact_info", {
-  date_of_birth: {
-    type: DataTypes.DATEONLY,
-    allowNull: false,
-  },
-  nationality_id: {
-    type: DataTypes.INTEGER,
-  },
-  createdAt: {
-    field: "created_at", // Cambia el nombre de la columna createdAt
-    type: DataTypes.DATE,
-    defaultValue: function () {
-      return new Date();
+const ContactInfo = sequelize.define(
+  "contact_info",
+  {
+    date_of_birth: {
+      type: DataTypes.DATEONLY,
+      allowNull: false,
+    },
+    nationality_id: {
+      type: DataTypes.INTEGER,
     },
   },
-  updatedAt: {
-    field: "updated_at", // Cambia el nombre de la columna updatedAt
-    type: DataTypes.DATE,
-    defaultValue: function () {
-      return new Date();
-    },
-  },
-});
+  {
+    timestamps: true,
+    underscored: true,
+  }
+);
 
 module.exports = ContactInfo;

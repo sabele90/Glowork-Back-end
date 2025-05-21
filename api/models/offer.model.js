@@ -11,7 +11,7 @@ const Offer = sequelize.define("offer", {
     allowNull: false,
   },
   location: {
-    type: DataTypes.GEOMETRY,
+    type: DataTypes.STRING, // ← cambiado desde GEOMETRY
     allowNull: false,
   },
   start_date: {
@@ -50,24 +50,13 @@ const Offer = sequelize.define("offer", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-
   company_id: {
     type: DataTypes.INTEGER,
-  },
-  createdAt: {
-    field: "created_at", // Cambia el nombre de la columna createdAt
-    type: DataTypes.DATE,
-    defaultValue: function () {
-      return new Date();
-    },
-  },
-  updatedAt: {
-    field: "updated_at", // Cambia el nombre de la columna updatedAt
-    type: DataTypes.DATE,
-    defaultValue: function () {
-      return new Date();
-    },
-  },
+    allowNull: false,
+  }
+}, {
+  timestamps: true,
+  underscored: true,
 });
 
 module.exports = Offer;

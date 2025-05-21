@@ -18,27 +18,19 @@ const Review = sequelize.define("review", {
   },
   user_id: {
     type: DataTypes.INTEGER,
+    allowNull: false, // ← Opcional pero recomendable si es obligatorio
   },
   offer_id: {
     type: DataTypes.INTEGER,
+    allowNull: false,
   },
   company_id: {
     type: DataTypes.INTEGER,
+    allowNull: false,
   },
-  createdAt: {
-    field: "created_at", // Cambia el nombre de la columna createdAt
-    type: DataTypes.DATE,
-    defaultValue: function () {
-      return new Date();
-    },
-  },
-  updatedAt: {
-    field: "updated_at", // Cambia el nombre de la columna updatedAt
-    type: DataTypes.DATE,
-    defaultValue: function () {
-      return new Date();
-    },
-  },
+}, {
+  timestamps: true,
+  underscored: true,
 });
 
 module.exports = Review;

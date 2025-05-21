@@ -16,6 +16,7 @@ const User = sequelize.define("user", {
   email: {
     type: DataTypes.STRING,
     unique: true,
+    allowNull: false,
     validate: {
       is: {
         args: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
@@ -38,25 +39,13 @@ const User = sequelize.define("user", {
   contact_info_id: {
     type: DataTypes.INTEGER,
   },
-
   role: {
-    type: DataTypes.ENUM("user", "company", "admin"), // Enumera los roles disponibles
+    type: DataTypes.ENUM("user", "company", "admin"),
     defaultValue: "user",
   },
-  createdAt: {
-    field: "created_at", // Cambia el nombre de la columna createdAt
-    type: DataTypes.DATE,
-    defaultValue: function () {
-      return new Date();
-    },
-  },
-  updatedAt: {
-    field: "updated_at", // Cambia el nombre de la columna updatedAt
-    type: DataTypes.DATE,
-    defaultValue: function () {
-      return new Date();
-    },
-  },
+}, {
+  timestamps: true,
+  underscored: true, // crea columnas created_at, updated_at automáticamente
 });
 
 module.exports = User;

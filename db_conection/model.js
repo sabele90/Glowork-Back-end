@@ -10,8 +10,8 @@ const User = require("../api/models/user.model");
 
 function addRelationsToModels() {
   try {
-    //ONE TO ONE
-    //USER
+    // --- ONE TO ONE ---
+    // USER → CONTACT INFO
     User.hasOne(ContactInfo, {
       foreignKey: "user_id",
       onDelete: "CASCADE",
@@ -19,22 +19,16 @@ function addRelationsToModels() {
     });
     ContactInfo.belongsTo(User, { foreignKey: "user_id" });
 
+    // CONTACT INFO → NATIONALITY
+    Nationality.hasMany(ContactInfo, { foreignKey: "nationality_id" });
+    ContactInfo.belongsTo(Nationality, { foreignKey: "nationality_id" });
 
-    Nationality.hasMany(ContactInfo);
-    ContactInfo.belongsTo(Nationality);
+    // --- ONE TO MANY ---
+    // COUNTRY → CONTINENT
+    Continent.hasMany(Country, { foreignKey: "continent_id" });
+    Country.belongsTo(Continent, { foreignKey: "continent_id" });
 
-
-
-    //COMPANY
-    Company.hasOne(Country, {
-      foreignKey: "company_id",
-      onDelete: "CASCADE",
-      onUpdate: "CASCADE",
-    });
-    Country.belongsTo(Company, { foreignKey: "company_id" });
-
-    //ONE TO MANY
-    //USER
+    // USER → FAVORITES
     User.hasMany(Favorites, {
       foreignKey: "user_id",
       onDelete: "CASCADE",
@@ -42,13 +36,15 @@ function addRelationsToModels() {
     });
     Favorites.belongsTo(User, { foreignKey: "user_id" });
 
+    // OFFER → FAVORITES
     Offer.hasMany(Favorites, {
       foreignKey: "offer_id",
       onDelete: "CASCADE",
-      onUpdate: "CASCADE"
-    })
-    Favorites.belongsTo(Offer, {foreignKey: "offer_id"})
+      onUpdate: "CASCADE",
+    });
+    Favorites.belongsTo(Offer, { foreignKey: "offer_id" });
 
+    // USER → REVIEWS
     User.hasMany(Review, {
       foreignKey: "user_id",
       onDelete: "CASCADE",
@@ -56,8 +52,7 @@ function addRelationsToModels() {
     });
     Review.belongsTo(User, { foreignKey: "user_id" });
 
-    //COMPANY
-
+    // COMPANY → OFFERS
     Company.hasMany(Offer, {
       foreignKey: "company_id",
       onDelete: "CASCADE",
@@ -65,20 +60,20 @@ function addRelationsToModels() {
     });
     Offer.belongsTo(Company, { foreignKey: "company_id" });
 
-    Company.hasMany(Continent, {
-      foreignKey: "company_id",
-      onDelete: "CASCADE",
-      onUpdate: "CASCADE",
-    });
-    Continent.belongsTo(Company, { foreignKey: "company_id" });
+    // --- MANY TO MANY ---
+    // COMPANY ↔ COUNTRY
+    Company.belongsToMany(Country, { through: "company_country" });
+    Country.belongsToMany(Company, { through: "company_country" });
 
-    //MANY TO MANY
+    // USER ↔ OFFER
     Offer.belongsToMany(User, { through: "job_offer_user" });
     User.belongsToMany(Offer, { through: "job_offer_user" });
 
-    console.log("Relations added to all models");
+    console.log(" Relations added to all models");
   } catch (error) {
+    console.error(" Error adding relations:", error);
     throw error;
   }
 }
+
 module.exports = addRelationsToModels;
